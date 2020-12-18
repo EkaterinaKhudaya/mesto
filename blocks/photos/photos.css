@@ -1,0 +1,16 @@
+.photos {
+    display: grid;
+    justify-content: center;
+    border: 1px solid red;
+    max-width: 68.75vw;
+    margin: 0 auto;
+    grid-template-columns:repeat(auto-fit, minmax(min-content, 282px));
+    gap: 17px;
+}
+
+@media screen and (max-width: 320px) {
+    .photos {
+        max-width: 282px;
+    }
+
+}
