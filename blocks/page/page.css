@@ -1,10 +1,12 @@
 .page {
+    position: relative;
     align-content: center;
     display: flex;
+    color: #fff;
     flex-direction: column;
     background-color: #2A2C2F;
     max-width: 1280px;
-    min-width: 320px;
+
     margin: 0 auto;
     font-family: 'Inter', Arial, serif;
     -moz-osx-font-smoothing: grayscale;
@@ -13,4 +15,5 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+    border: 1px solid red;
 }
