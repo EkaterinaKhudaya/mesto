@@ -10,8 +10,6 @@
     vertical-align: top;
 }
 
-
-
 @media screen and (max-width: 680px) {
     .profile__edit-data-button {
         height: 18px;

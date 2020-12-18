@@ -1,0 +1,10 @@
+.photos__like-button {
+    display: inline-block;
+    background-color: white;
+    width: 21px;
+    height: 19px;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    border: none;
+}
