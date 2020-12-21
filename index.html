@@ -30,8 +30,22 @@
             </button>
         </section>
 
-        <section class="photos">
+        <section class="popup">
+            <div  class="popup__container">
+                <button class="popup__close-button">
+                    <img src="./images/closeIcon.png" alt="Крестик для закрытия формы редактирования профиля">
+                </button>
+                <h2 class="popup__heading">Редактировать профиль</h2>
+                <input class="popup__item" type="text">
+                <input class="popup__item" type="text">
+                <button class="popup__button">
+                    <p class="popup__button_save-data">Сохранить</p>
+                </button>
+            </div>
+        </section>
 
+
+        <section class="photos">
             <div class="photos__item">
                 <img src="./images/karachaevsk.jpg" alt="Замок в горах" class="photos__image">
                 <div class="photos__information">
@@ -97,9 +111,10 @@
 
         </section>
         <section class="footer">
-             <p class="footer__copyright">&copy;2020. Mesto Russia</p>
+            <p class="footer__copyright">&copy;2020. Mesto Russia</p>
         </section>
     </main>
 </div>
+<script src="script.js"></script>
 </body>
 </html>
