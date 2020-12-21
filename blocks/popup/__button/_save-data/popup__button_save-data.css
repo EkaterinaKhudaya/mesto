@@ -1,7 +1,5 @@
 .popup__button_save-data {
-    top: 0;
-    left: 0;
     font-size: 18px;
     line-height: 22px;
-    margin: 14px 0 18px;
+    margin: 14px auto 18px;
 }
