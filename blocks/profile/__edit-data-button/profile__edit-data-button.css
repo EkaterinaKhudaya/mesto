@@ -1,20 +1,24 @@
 .profile__edit-data-button {
-    align-self: center;
+    background-image: url("../../../images/editButton.png");
+    background-repeat: no-repeat;
+    background-position: center;
     display: inline-block;
     background-color: #2A2C2F;
     border: 1px solid #FFFFFF;
     padding: 0;
     height: 24px;
     width: 24px;
-    margin: 15px 0 0;
-    vertical-align: top;
+    margin: 0;
+}
+
+.profile__edit-data-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 680px) {
     .profile__edit-data-button {
         height: 18px;
         width: 18px;
-        margin-top: 5px;
-        margin-left: 10px;
     }
 }

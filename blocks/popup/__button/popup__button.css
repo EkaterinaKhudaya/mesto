@@ -5,3 +5,8 @@
     padding: 0;
     border: none;
 }
+
+.popup__button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

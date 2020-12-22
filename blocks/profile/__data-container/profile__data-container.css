@@ -1,9 +1,11 @@
 .profile__data-container{
     display: flex;
+    justify-content: space-between;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1100px) {
     .profile__data-container {
         flex-direction: column;
+        align-self: stretch;
     }
 }

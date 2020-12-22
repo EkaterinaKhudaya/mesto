@@ -3,3 +3,10 @@
     line-height: 22px;
     margin: 14px auto 18px;
 }
+
+@media screen and (max-width: 320px) {
+    .popup__button_save-data {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

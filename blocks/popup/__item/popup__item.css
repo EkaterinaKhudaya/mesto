@@ -1,9 +1,10 @@
 .popup__item {
+    font-size: 14px;
+    line-height: 17px;
     margin-bottom: 30px;
     padding-bottom: 13px;
     border: none;
     border-bottom: 1px solid #000;
-    box-sizing: border-box;
 
 }
 
