@@ -18,88 +18,92 @@
             <div class="profile__data-container">
                 <img src="./images/jack-if-kusto.jpg" alt="Аватар" class="profile__avatar">
                 <div class="profile__userdata">
-                    <h1 class="profile__username">Жак-Ив Kусто</h1>
-                    <button class="profile__edit-data-button">
-                        <img src="./images/editButton.png" alt="Иконка для редактирования профиля">
-                    </button>
-                    <p class="profile__userinfo">Иссследователь океана</p>
+                    <div class="profile__overlay">
+                        <h1 class="profile__username">Жак-Ив Kусто</h1>
+                        <button class="profile__edit-data-button"></button>
+                    </div>
+                    <p class="profile__userinfo">Исследователь океана</p>
                 </div>
             </div>
-            <button class="profile__add-photo-button">
-                <img src="./images/addPhotoButton.png" alt="Иконка для добавления картинок">
-            </button>
+            <button class="profile__add-photo-button"></button>
         </section>
+
+        <section class="popup">
+            <div class="popup__data-container">
+                <button class="popup__close-button"></button>
+                <h2 class="popup__heading">Редактировать профиль</h2>
+                <input class="popup__item popup__item_username" type="text">
+                <input class="popup__item popup__item_userinfo" type="text">
+                <button class="popup__button">
+                    <p class="popup__button_save-data">Сохранить</p>
+                </button>
+            </div>
+        </section>
+
 
         <section class="photos">
+            <ul class="photos__list">
+                <li class="photos__item">
+                    <img src="./images/karachaevsk.jpg" alt="Замок в горах" class="photos__image">
+                    <div class="photos__information">
+                        <p class="photos__caption">Карачаевск</p>
+                        <button class="photos__like-button">
+                            <img src="./images/heart.svg" alt="Иконка сердца для подсчёта лайков">
+                        </button>
+                    </div>
+                </li>
 
-            <div class="photos__item">
-                <img src="./images/karachaevsk.jpg" alt="Замок в горах" class="photos__image">
-                <div class="photos__information">
-                    <p class="photos__caption">Карачаевск</p>
-                    <button class="photos__like-button">
-                        <img src="./images/heart.svg" alt="Кнопка для ввиде сердца для подсчёта лайков"
-                             class="photos__heart">
-                    </button>
-                </div>
-            </div>
+                <li class="photos__item">
+                    <img src="./images/elbrus.jpg" alt="Замок в горах" class="photos__image">
+                    <div class="photos__information">
+                        <p class="photos__caption">Гора Эльбрус</p>
+                        <button class="photos__like-button">
+                            <img src="./images/heart.svg" alt="Иконка сердца для подсчёта лайков">
+                        </button>
+                    </div>
+                </li>
 
-            <div class="photos__item">
-                <img src="./images/elbrus.jpg" alt="Замок в горах" class="photos__image">
-                <div class="photos__information">
-                    <p class="photos__caption">Гора Эльбрус</p>
-                    <button class="photos__like-button">
-                        <img src="./images/heart.svg" alt="Кнопка для ввиде сердца для подсчёта лайков"
-                             class="photos__heart">
-                    </button>
-                </div>
-            </div>
-
-            <div class="photos__item">
-                <img src="./images/dombas.jpg" alt="Вид на Эльбрус" class="photos__image">
-                <div class="photos__information">
-                    <p class="photos__caption">Домбай</p>
-                    <button class="photos__like-button">
-                        <img src="./images/heart.svg" alt="Кнопка для ввиде сердца для подсчёта лайков"
-                             class="photos__heart">
-                    </button>
-                </div>
-            </div>
-            <div class="photos__item">
-                <img src="./images/karachaevsk.jpg" alt="Замок в горах" class="photos__image">
-                <div class="photos__information">
-                    <p class="photos__caption">Карачаево-Черкесская Республика</p>
-                    <button class="photos__like-button">
-                        <img src="./images/heart.svg" alt="Кнопка для ввиде сердца для подсчёта лайков"
-                             class="photos__heart">
-                    </button>
-                </div>
-            </div>
-            <div class="photos__item">
-                <img src="./images/elbrus.jpg" alt="Замок в горах" class="photos__image">
-                <div class="photos__information">
-                    <p class="photos__caption">Гора Эльбрус</p>
-                    <button class="photos__like-button">
-                        <img src="./images/heart.svg" alt="Кнопка для ввиде сердца для подсчёта лайков"
-                             class="photos__heart">
-                    </button>
-                </div>
-            </div>
-            <div class="photos__item">
-                <img src="./images/dombas.jpg" alt="Вид на Эльбрус" class="photos__image">
-                <div class="photos__information">
-                    <p class="photos__caption">Домбай</p>
-                    <button class="photos__like-button">
-                        <img src="./images/heart.svg" alt="Кнопка для ввиде сердца для подсчёта лайков"
-                             class="photos__heart">
-                    </button>
-                </div>
-            </div>
-
+                <li class="photos__item">
+                    <img src="./images/dombas.jpg" alt="Вид на Эльбрус" class="photos__image">
+                    <div class="photos__information">
+                        <p class="photos__caption">Домбай</p>
+                        <button class="photos__like-button">
+                            <img src="./images/heart.svg" alt="Иконка сердца для подсчёта лайков">
+                        </button>
+                    </div>
+                </li>
+                <li class="photos__item">
+                    <img src="./images/karachaevsk.jpg" alt="Замок в горах" class="photos__image">
+                    <div class="photos__information">
+                        <p class="photos__caption">Карачаево-Черкесская Республика</p>
+                        <button class="photos__like-button">
+                            <img src="./images/heart.svg" alt="Иконка сердца для подсчёта лайков">
+                        </button>
+                    </div>
+                </li>
+                <li class="photos__item">
+                    <img src="./images/elbrus.jpg" alt="Замок в горах" class="photos__image">
+                    <div class="photos__information">
+                        <p class="photos__caption">Гора Эльбрус</p>
+                        <button class="photos__like-button">
+                            <img src="./images/heart.svg" alt="Иконка сердца для подсчёта лайков">
+                        </button>
+                    </div>
+                </li>
+                <li class="photos__item">
+                    <img src="./images/dombas.jpg" alt="Вид на Эльбрус" class="photos__image">
+                    <div class="photos__information">
+                        <p class="photos__caption">Домбай</p>
+                        <button class="photos__like-button"></button>
+                    </div>
+                </li>
+            </ul>
         </section>
         <section class="footer">
-             <p class="footer__copyright">&copy;2020. Mesto Russia</p>
+            <p class="footer__copyright">&copy;2020. Mesto Russia</p>
         </section>
     </main>
 </div>
+<script src="script.js"></script>
 </body>
 </html>

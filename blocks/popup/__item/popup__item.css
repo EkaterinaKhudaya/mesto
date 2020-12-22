@@ -1,0 +1,17 @@
+.popup__item {
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 30px;
+    padding-bottom: 13px;
+    border: none;
+    border-bottom: 1px solid #000;
+
+}
+
+.popup__item:last-of-type {
+    margin-bottom: 48px;
+}
+
+.popup__item:active, .popup__item:focus {
+    outline: none;
+}
