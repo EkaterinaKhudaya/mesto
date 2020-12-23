@@ -1,0 +1,6 @@
+.photos__image {
+    max-height: 282px;
+    width: 100%;
+    border-top-right-radius: 5%;
+    border-top-left-radius: 5%;
+}

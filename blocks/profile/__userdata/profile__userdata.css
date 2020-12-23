@@ -1,0 +1,12 @@
+.profile__userdata{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 22px 0 0 30px;
+}
+
+@media screen and (max-width: 1100px) {
+    .profile__userdata {
+        margin: 26px 0 36px;
+    }
+}

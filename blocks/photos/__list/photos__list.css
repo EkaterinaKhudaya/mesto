@@ -1,0 +1,12 @@
+.photos__list {
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+    display: grid;
+    justify-content: center;
+    grid-template-columns:repeat(auto-fit, minmax(min-content, 282px));
+    gap: 17px;
+}
+
+

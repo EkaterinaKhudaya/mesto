@@ -1,0 +1,22 @@
+.profile__add-photo-button {
+    background-image: url("../../../images/addPhotoButton.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color:  #2A2C2F;
+    border: 2px solid #FFFFFF;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+    height: 50px;
+}
+
+.profile__add-photo-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__add-photo-button {
+        width: 100%;
+    }
+}
