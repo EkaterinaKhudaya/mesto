@@ -18,8 +18,8 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('../fonts/Inter_Web/Inter-Bold.woff'),
-    url('../fonts/Inter_Web/Inter-Bold.woff2');
+    src: url('../fonts/Inter_Web/Inter-Medium.woff'),
+    url('../fonts/Inter_Web/Inter-Medium.woff2');
     font-style: normal;
     font-weight: 700;
     font-display: swap;
