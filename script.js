@@ -1,7 +1,7 @@
 let editData = document.querySelector('.profile__edit-data-button');
 let popUpCloseButton = document.querySelector('.popup__close-button');
 let popUp = document.querySelector('.popup');
-let formElement = popUp.querySelector('.popup__container')
+let formElement = popUp.querySelector('.popup__container');
 let saveButton = popUp.querySelector('.popup__button');
 let userName = document.querySelector('.profile__username');
 let userInfo = document.querySelector('.profile__userinfo');
@@ -16,18 +16,13 @@ function getUserData() {
     popUpUserName.value = userName.textContent;
     popUpUserInfo.value = userInfo.textContent;
 }
-/* Функция для сохранения данных пользователя в профиле */
-function setUserData() {
-    userName.textContent = popUpUserName.value;
-    userInfo.textContent = popUpUserInfo.value;
-    closePopUpForm();
-}
 
-/* Функция для сохранения данных пользователя в профиле и отправки данных на сервер*/
+/* Функция для данных пользователя на сервер*/
 function handleFormSubmit(evt) {
     evt.preventDefault();
     userName.textContent = popUpUserName.value;
     userInfo.textContent = popUpUserInfo.value;
+    closePopUpForm();
 }
 
 
@@ -57,7 +52,7 @@ function pressHeart() {
 
 editData.addEventListener('click', openPopUpForm);
 popUpCloseButton.addEventListener('click', closePopUpForm);
-saveButton.addEventListener('click', setUserData)
+saveButton.addEventListener('click', handleFormSubmit);
 formElement.addEventListener('submit', handleFormSubmit);
 pressHeart();
 
