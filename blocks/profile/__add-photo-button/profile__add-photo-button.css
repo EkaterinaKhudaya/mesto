@@ -2,8 +2,9 @@
     background-image: url("../../../images/addPhotoButton.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-color:  #2A2C2F;
+    background-color:  #000;
     border: 2px solid #FFFFFF;
+    border-radius: 2px;
     padding: 0;
     margin: 0;
     width: 150px;
