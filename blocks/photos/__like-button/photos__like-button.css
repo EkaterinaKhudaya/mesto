@@ -1,16 +1,16 @@
 .photos__like-button {
     background-image: url("../../../images/heart.svg");
-    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    display: inline-block;
     background-color: white;
-    width: 21px;
-    height: 19px;
+    object-fit: cover;
+    display: block;
+    min-width: 21px;
+    min-height: 19px;
     padding: 0;
     margin: 0;
     align-self: center;
     border: none;
-    fill: red;
 }
 
 .photos__like-button:hover {
@@ -23,8 +23,5 @@
     outline: none;
 }
 
-.photos__like-button_active {
-     background-image: url("../../../images/fullHeart.svg");
-}
 
 
