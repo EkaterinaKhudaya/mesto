@@ -1,5 +1,5 @@
 .profile__edit-data-button {
-    background-image: url("../../../images/editButton.png");
+    background-image: url("../../../images/editButton.svg");
     background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
@@ -9,11 +9,16 @@
     height: 24px;
     width: 24px;
     margin: 0;
+    box-sizing: border-box;
 }
 
 .profile__edit-data-button:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+
+.profile__edit-data-button:active, .profile__edit-data-button:focus {
+    outline: none;
 }
 
 @media screen and (max-width: 680px) {

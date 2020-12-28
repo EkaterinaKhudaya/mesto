@@ -1,5 +1,5 @@
 .profile__add-photo-button {
-    background-image: url("../../../images/addPhotoButton.png");
+    background-image: url("../../../images/addPhotoButton.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-color:  #000;
@@ -14,6 +14,10 @@
 .profile__add-photo-button:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+
+.profile__add-photo-button:active, .profile__add-photo-button:focus {
+    outline: none;
 }
 
 @media screen and (max-width: 320px) {
