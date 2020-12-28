@@ -6,13 +6,17 @@
     font-size: 18px;
     line-height: 22px;
     padding-top: 14px;
-    padding-bottom: 18px;
+    padding-bottom: 14px;
     border-radius: 2px;
 }
 
 .popup__button:hover {
     cursor: pointer;
     opacity: 0.8;
+}
+
+.profile__add-photo-button:active, .popup__button:focus {
+    outline: none;
 }
 
 @media screen and (max-width: 320px) {
