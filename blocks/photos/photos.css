@@ -1,6 +1,6 @@
 .photos {
     margin: 0 auto;
-    max-width: 68.75vw;
+    max-width: 880px;
 }
 
 @media screen and (max-width: 320px) {
