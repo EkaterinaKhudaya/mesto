@@ -5,6 +5,7 @@
     text-decoration: none;
     display: grid;
     justify-content: center;
+    max-width: 880px;
     grid-template-columns:repeat(auto-fit, minmax(min-content, 282px));
     gap: 17px;
 }
