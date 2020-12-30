@@ -1,4 +1,4 @@
-.profile__username{
+.profile__username {
     display: inline-block;
     font-size: 42px;
     line-height: 48px;
@@ -10,8 +10,11 @@
     white-space: nowrap;
 }
 
+
+
 @media screen and (max-width: 400px) {
     .profile__username {
+        max-width: 200px;
         font-size: 32px;
         line-height: 38px;
         margin: 0 10px 0 0;
