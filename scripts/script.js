@@ -1,25 +1,22 @@
 let editData = document.querySelector('.profile__edit-data-button');
 let popUpUserDataCloseButton = document.querySelector('.popup__close-button_userData');
-let popUpUserData = document.querySelector('.popup__userdata');
+let popUpUserData = document.querySelector('.popup_userdata');
 let formUserElement = document.querySelector('.popup__form_userData');
 let userName = document.querySelector('.profile__username');
 let userInfo = document.querySelector('.profile__userinfo');
 let popUpUserName = popUpUserData.querySelector('.popup__item_user_name');
 let popUpUserInfo = popUpUserData.querySelector('.popup__item_user_info');
-let picturesStarted = document.querySelectorAll('.photos__item');
-let popUpCardData = document.querySelector('.popup__cardInfo');
+let popUpCardData = document.querySelector('.popup_cardInfo');
 let popUpAddPhoto = document.querySelector('.profile__add-photo-button');
 let popUpCardDataCloseButton = document.querySelector('.popup__close-button_cardInfo');
 let formCardElement = document.querySelector('.popup__form_cardInfo');
 
-let popUpCardDescription = popUpUserData.querySelector('.popup__item_card_description');
-let popUpCardImage = popUpUserData.querySelector('.popup__item_card_image');
 let photosList = document.querySelector('.photos__list');
 
 let heartsButtons = photosList.querySelectorAll('.photos__like-button');
 let deleteButtons = photosList.querySelectorAll('.photos__delete-button');
 let photo = photosList.querySelectorAll('.photos__image');
-let photoPopUp = document.querySelector('.popup__photo');
+let photoPopUp = document.querySelector('.popup_photo');
 let photoPopUpCloseButton = document.querySelector('.popup__close-button_photo');
 
 
