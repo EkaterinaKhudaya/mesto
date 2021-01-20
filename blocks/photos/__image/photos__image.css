@@ -5,3 +5,7 @@
     border-top-left-radius: 5%;
     object-fit: cover;
 }
+
+.photos__image:hover {
+    cursor: pointer;
+}

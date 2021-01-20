@@ -56,21 +56,25 @@ const initialCards = [
     }
 ];
 
-/*Функция автоматически добавляющая картинки в HTML */
-picturesStarted.forEach((item, index) => {
-    const card = initialCards[index]
-    item.querySelector('.photos__image').src = card.link;
-    item.querySelector('.photos__image').alt = card.description;
-    item.querySelector('.photos__caption').textContent = card.name;
+/*Автоматическое добавление карточкек при загрузки стараницы */
+initialCards.forEach((card) => {
+    addPhotoToPage(card)
 })
 
-/* Функция для добавления фотографий на страницу */
-function addPhotoToPage(value) {
+/* Функция для добавления карточки на страницу */
+function addPhotoToPage(card) {
     const photoTemplate = document.querySelector('#photo').content;
     const photoElement = photoTemplate.cloneNode(true);
 
-    photoElement.querySelector('.photos__image').src = popUpCardData.querySelector('.popup__item_card_image').value;
-    photoElement.querySelector('.photos__caption').textContent = popUpCardData.querySelector('.popup__item_card_description').value;
+    if (card) {
+        photoElement.querySelector('.photos__image').src = card.link;
+        photoElement.querySelector('.photos__caption').textContent = card.name;
+    }
+    if (!card) {
+        photoElement.querySelector('.photos__image').src = popUpCardData.querySelector('.popup__item_card_image').value;
+        photoElement.querySelector('.photos__caption').textContent = popUpCardData.querySelector('.popup__item_card_description').value;
+    }
+
     photoElement.querySelector('.photos__delete-button').addEventListener('click', function () {
         deletePhoto(event)
     })
@@ -78,44 +82,46 @@ function addPhotoToPage(value) {
         clickOnHeart(event)
     })
     photoElement.querySelector('.photos__image').addEventListener('click', function () {
-        openPopUpForm(event,photoPopUp)
+        openPopUpForm(event, photoPopUp)
     })
 
-    photosList.prepend(photoElement)
+    if (card) {
+        photosList.append(photoElement)
+    }
+    if (!card) {
+        photosList.prepend(photoElement)
+    }
 
 
 }
 
 
-/* Функция для передачи данных пользователя в popup */
-function getUserData() {
-    popUpUserName.value = userName.textContent;
-    popUpUserInfo.value = userInfo.textContent;
-}
+/* Отрытие popup */
+function openPopUpForm(evt, value) {
 
-
-function openPopUpForm(evt,value) {
     if (value === popUpUserData) {
-        getUserData()
+        popUpUserName.value = userName.textContent;
+        popUpUserInfo.value = userInfo.textContent;
         value.classList.add('popup_opened');
     }
-     if (value === popUpCardData) {
+    if (value === popUpCardData) {
+        popUpCardData.querySelector('.popup__item_card_image').value = '';
+        popUpCardData.querySelector('.popup__item_card_description').value = '';
         value.classList.add('popup_opened');
     }
-    if (value === photoPopUp ) {
+    if (value === photoPopUp) {
         const image = photoPopUp.querySelector('.popup__image-element');
         const caption = photoPopUp.querySelector('.popup__heading-photo');
         const photoInfo = evt.target.closest('.photos__item');
-        image.src= evt.target.currentSrc;
+        image.src = evt.target.currentSrc;
         caption.textContent = photoInfo.querySelector('.photos__caption').textContent
-
         value.classList.add('popup_opened');
     }
 
 
 }
 
-function closePopUpForm(evt,value) {
+function closePopUpForm(evt, value) {
     value.classList.remove('popup_opened');
 }
 
@@ -128,13 +134,12 @@ function handleFormSubmit(evt) {
         userName.textContent = popUpUserName.value;
         userInfo.textContent = popUpUserInfo.value;
         value = popUpUserData
-        closePopUpForm(event,value);
+        closePopUpForm(event, value);
     }
     if (evt.target.classList.contains('popup__form_cardInfo')) {
         value = popUpCardData
-        console.log(value.classList)
-        addPhotoToPage(value)
-        closePopUpForm(event,value);
+        addPhotoToPage()
+        closePopUpForm(event, value);
     }
 }
 
@@ -151,19 +156,19 @@ function deletePhoto(evt) {
 }
 
 editData.addEventListener('click', function () {
-    openPopUpForm(event,popUpUserData)
+    openPopUpForm(event, popUpUserData)
 });
 popUpUserDataCloseButton.addEventListener('click', function () {
-    closePopUpForm(event,popUpUserData)
+    closePopUpForm(event, popUpUserData)
 });
 formUserElement.addEventListener('submit', function () {
     handleFormSubmit(event)
 });
 popUpAddPhoto.addEventListener('click', function () {
-    openPopUpForm(event,popUpCardData)
+    openPopUpForm(event, popUpCardData)
 });
 popUpCardDataCloseButton.addEventListener('click', function () {
-    closePopUpForm(event,popUpCardData)
+    closePopUpForm(event, popUpCardData)
 });
 formCardElement.addEventListener('submit', function () {
     handleFormSubmit(event)
@@ -178,11 +183,11 @@ deleteButtons.forEach((button) => button.addEventListener('click', function () {
 }));
 
 photo.forEach((photo) => photo.addEventListener('click', function () {
-    openPopUpForm(event,photoPopUp)
+    openPopUpForm(event, photoPopUp)
 }))
 
 photoPopUpCloseButton.addEventListener('click', function () {
-    closePopUpForm(event,photoPopUp)
+    closePopUpForm(event, photoPopUp)
 })
 
 
