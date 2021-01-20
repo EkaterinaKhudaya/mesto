@@ -28,5 +28,6 @@
 @import url(../blocks/photos/__caption/photos__caption.css);
 @import url(../blocks/photos/__information/photos__information.css);
 @import url(../blocks/photos/__like-button/photos__like-button.css);
+@import url(../blocks/photos/__like-button/_active/photos__like-button_active.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

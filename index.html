@@ -32,46 +32,46 @@
         <section class="photos">
             <ul class="photos__list">
                 <li class="photos__item">
-                    <img src="./images/karachaevsk.jpg" alt="Замок в горах" class="photos__image">
+                    <img src="" alt="Замок в горах" class="photos__image">
                     <div class="photos__information">
-                        <h2 class="photos__caption">Карачаевск</h2>
+                        <h2 class="photos__caption"></h2>
                         <button class="photos__like-button" type="button"></button>
                     </div>
                 </li>
 
                 <li class="photos__item">
-                    <img src="./images/elbrus.jpg" alt="Замок в горах" class="photos__image">
+                    <img src="" alt="Замок в горах" class="photos__image">
                     <div class="photos__information">
-                        <h2 class="photos__caption">Гора Эльбрус</h2>
+                        <h2 class="photos__caption"></h2>
                         <button class="photos__like-button" type="button"></button>
                     </div>
                 </li>
 
                 <li class="photos__item">
-                    <img src="./images/dombas.jpg" alt="Вид на Эльбрус" class="photos__image">
+                    <img src="" alt="Вид на Эльбрус" class="photos__image">
                     <div class="photos__information">
-                        <h2 class="photos__caption">Домбай</h2>
+                        <h2 class="photos__caption"></h2>
                         <button class="photos__like-button" type="button"></button>
                     </div>
                 </li>
                 <li class="photos__item">
-                    <img src="./images/karachaevsk.jpg" alt="Замок в горах" class="photos__image">
+                    <img src="" alt="Замок в горах" class="photos__image">
                     <div class="photos__information">
-                        <h2 class="photos__caption">Карачаево-Черкесская Республика</h2>
+                        <h2 class="photos__caption"></h2>
                         <button class="photos__like-button" type="button"></button>
                     </div>
                 </li>
                 <li class="photos__item">
-                    <img src="./images/elbrus.jpg" alt="Замок в горах" class="photos__image">
+                    <img src="" alt="Замок в горах" class="photos__image">
                     <div class="photos__information">
-                        <h2 class="photos__caption">Гора Эльбрус</h2>
+                        <h2 class="photos__caption"></h2>
                         <button class="photos__like-button" type="button"></button>
                     </div>
                 </li>
                 <li class="photos__item">
-                    <img src="./images/dombas.jpg" alt="Вид на Эльбрус" class="photos__image">
+                    <img src="" alt="Вид на Эльбрус" class="photos__image">
                     <div class="photos__information">
-                        <h2 class="photos__caption">Домбай</h2>
+                        <h2 class="photos__caption"></h2>
                         <button class="photos__like-button" type="button"></button>
                     </div>
                 </li>
@@ -81,17 +81,39 @@
     <footer class="footer">
         <p class="footer__copyright">&copy;2020. Mesto Russia</p>
     </footer>
-    <section class="popup">
-            <div class="popup__container">
-                <button class="popup__close-button" type="button"></button>
-                <h2 class="popup__heading">Редактировать профиль</h2>
-                <form name="userDate" class="popup__form">
-                    <input class="popup__item popup__item_user_name" type="text" name="username">
-                    <input class="popup__item popup__item_user_info" type="text" name="userinfo">
-                    <input class="popup__button" type="submit" value="Сохранить">
-                </form>
-            </div>
-        </section>
+    <section class="popup popup__userdata">
+        <div class="popup__container">
+            <button class="popup__close-button popup__close-button_userData" type="button"></button>
+            <h2 class="popup__heading">Редактировать профиль</h2>
+            <form name="userDate" class="popup__form popup__form_userData">
+                <input class="popup__item popup__item_user_name" type="text" name="username">
+                <input class="popup__item popup__item_user_info" type="text" name="userinfo">
+                <input class="popup__button" type="submit" value="Сохранить">
+            </form>
+        </div>
+    </section>
+    <section class="popup popup__cardInfo">
+        <div class="popup__container">
+            <button class="popup__close-button popup__close-button_cardInfo" type="button"></button>
+            <h2 class="popup__heading">Новое место</h2>
+            <form name="userDate" class="popup__form popup__form_cardInfo">
+                <input class="popup__item popup__item_card_description" type="text" placeholder="Название"
+                       name="cardDescription">
+                <input class="popup__item popup__item_card_image" type="text" placeholder="Ссылка на картинку"
+                       name="cardImage">
+                <input class="popup__button" type="submit" value="Сохранить">
+            </form>
+        </div>
+    </section>
+    <template id="photo">
+        <li class="photos__item">
+                    <img src="" alt="" class="photos__image">
+                    <div class="photos__information">
+                        <h2 class="photos__caption"></h2>
+                        <button class="photos__like-button" type="button"></button>
+                    </div>
+                </li>
+    </template>
 </div>
 
 <script src="./scripts/script.js"></script>
