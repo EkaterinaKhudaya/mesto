@@ -17,6 +17,7 @@ let popUpCardImage = popUpUserData.querySelector('.popup__item_card_image');
 let photosList = document.querySelector('.photos__list');
 
 let heartsButtons = photosList.querySelectorAll('.photos__like-button');
+let deleteButtons = photosList.querySelectorAll('.photos__delete-button');
 
 
 const initialCards = [
@@ -67,6 +68,9 @@ function addPhotoToPage(value) {
 
     photoElement.querySelector('.photos__image').src = popUpCardData.querySelector('.popup__item_card_image').value;
     photoElement.querySelector('.photos__caption').textContent = popUpCardData.querySelector('.popup__item_card_description').value;
+    photoElement.querySelector('.photos__delete-button').addEventListener('click', function () {
+        deletePhoto(event)
+    })
     photoElement.querySelector('.photos__like-button').addEventListener('click', function () {
         clickOnHeart(event)
     })
@@ -123,6 +127,11 @@ function clickOnHeart(evt) {
     evt.target.classList.toggle('photos__like-button_active');
 }
 
+/* Функция для удаления фото со страницы*/
+function deletePhoto(evt) {
+    const photoItem = evt.target.closest('.photos__item');
+    photoItem.remove();
+}
 
 editData.addEventListener('click', function () {
     openPopUpForm(popUpUserData)
@@ -145,6 +154,10 @@ formCardElement.addEventListener('submit', function () {
 
 heartsButtons.forEach((button) => button.addEventListener('click', function () {
     clickOnHeart(event)
+}));
+
+deleteButtons.forEach((button) => button.addEventListener('click', function () {
+    deletePhoto(event)
 }));
 
 

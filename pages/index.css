@@ -24,6 +24,7 @@
 @import url(../blocks/photos/photos.css);
 @import url(../blocks/photos/__list/photos__list.css);
 @import url(../blocks/photos/__item/photo__item.css);
+@import url(../blocks/photos/__delete-button/photos__delete-butoon.css);
 @import url(../blocks/photos/__image/photos__image.css);
 @import url(../blocks/photos/__caption/photos__caption.css);
 @import url(../blocks/photos/__information/photos__information.css);
