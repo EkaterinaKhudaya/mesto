@@ -16,6 +16,8 @@ const photoTemplate = document.querySelector('#photo').content;
 const photosList = document.querySelector('.photos__list');
 const photoPopUp = document.querySelector('.popup_photo');
 const photoPopUpCloseButton = document.querySelector('.popup__close-button_photo');
+const image = photoPopUp.querySelector('.popup__image-element');
+const caption = photoPopUp.querySelector('.popup__heading-photo');
 
 
 const initialCards = [
@@ -62,24 +64,24 @@ function addPhotoToPage(card) {
     photoElement.querySelector('.photos__image').src = card.link;
     photoElement.querySelector('.photos__caption').textContent = card.name;
 
-    photoElement.querySelector('.photos__delete-button').addEventListener('click', function () {
+    photoElement.querySelector('.photos__delete-button').addEventListener('click', function (event) {
         deletePhoto(event)
     });
-    photoElement.querySelector('.photos__like-button').addEventListener('click', function () {
+    photoElement.querySelector('.photos__like-button').addEventListener('click', function (event) {
         clickOnHeart(event)
     });
-    photoElement.querySelector('.photos__image').addEventListener('click', function () {
+    photoElement.querySelector('.photos__image').addEventListener('click', function (event) {
         openPhotoModal(event)
     });
     photosList.prepend(photoElement);
 }
 
-function openModal(value) {
-    value.classList.add('popup_opened');
+function openModal(modal) {
+    modal.classList.add('popup_opened');
 }
 
-function closeModal(value) {
-    value.classList.remove('popup_opened');
+function closeModal(modal) {
+    modal.classList.remove('popup_opened');
 }
 
 function openProfileModal() {
@@ -96,8 +98,6 @@ function openCardModal() {
 
 function openPhotoModal(evt) {
     openModal(photoPopUp);
-    const image = photoPopUp.querySelector('.popup__image-element');
-    const caption = photoPopUp.querySelector('.popup__heading-photo');
     const photoInfo = evt.target.closest('.photos__item');
     image.src = evt.target.currentSrc;
     caption.textContent = photoInfo.querySelector('.photos__caption').textContent;
@@ -112,7 +112,7 @@ function saveEditProfile(evt) {
 
 function createCard(evt) {
     evt.preventDefault();
-    let card = {
+    const card = {
         name: popUpCardDescription.value,
         link: popUpCardImage.value
     }
@@ -133,14 +133,14 @@ editDataButton.addEventListener('click', openProfileModal);
 popUpUserDataCloseButton.addEventListener('click', function () {
     closeModal(popUpUserData)
 });
-formUserElement.addEventListener('submit', function () {
+formUserElement.addEventListener('submit', function (event) {
     saveEditProfile(event)
 });
 popUpAddPhotoButton.addEventListener('click', openCardModal);
 popUpCardDataCloseButton.addEventListener('click', function () {
     closeModal(popUpCardData)
 });
-formCardElement.addEventListener('submit', function () {
+formCardElement.addEventListener('submit', function (event) {
     createCard(event)
 });
 
