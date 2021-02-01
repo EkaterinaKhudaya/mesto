@@ -1,25 +1,23 @@
+const popUp = document.querySelectorAll('.popup')
 const editDataButton = document.querySelector('.profile__edit-data-button');
 const userName = document.querySelector('.profile__username');
 const userInfo = document.querySelector('.profile__userinfo');
 const popUpUserData = document.querySelector('.popup_userdata');
 const popUpUserName = popUpUserData.querySelector('.popup__item_user_name');
 const popUpUserInfo = popUpUserData.querySelector('.popup__item_user_info');
-const popUpUserDataCloseButton = document.querySelector('.popup__close-button_userData');
 const formUserElement = document.querySelector('.popup__form_userData');
 const popUpAddPhotoButton = document.querySelector('.profile__add-photo-button');
 const popUpCardData = document.querySelector('.popup_cardInfo');
 const popUpCardDescription = document.querySelector('.popup__item_card_description');
 const popUpCardImage = document.querySelector('.popup__item_card_image');
-const popUpCardDataCloseButton = document.querySelector('.popup__close-button_cardInfo');
 const formCardElement = document.querySelector('.popup__form_cardInfo');
 const photoTemplate = document.querySelector('#photo').content;
 const photosList = document.querySelector('.photos__list');
 const photoPopUp = document.querySelector('.popup_photo');
-const photoPopUpCloseButton = document.querySelector('.popup__close-button_photo');
 const image = photoPopUp.querySelector('.popup__image-element');
 const caption = photoPopUp.querySelector('.popup__heading-photo');
 
-
+console.log(popUp)
 const initialCards = [
     {
         name: 'Архыз',
@@ -57,6 +55,14 @@ const initialCards = [
 initialCards.reverse().forEach((card) => {
     addPhotoToPage(card);
 })
+/*Вешаем обработчик событий на popUp */
+popUp.forEach((modal) => {
+    modal.addEventListener('click', function (evt) {
+        if (evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup')) {
+            closeModal(modal)
+        }
+    })
+})
 
 /* Функция для добавления карточки на страницу */
 function addPhotoToPage(card) {
@@ -78,6 +84,7 @@ function addPhotoToPage(card) {
 
 function openModal(modal) {
     modal.classList.add('popup_opened');
+    console.log(popUp)
 }
 
 function closeModal(modal) {
@@ -130,23 +137,16 @@ function deletePhoto(evt) {
 }
 
 editDataButton.addEventListener('click', openProfileModal);
-popUpUserDataCloseButton.addEventListener('click', function () {
-    closeModal(popUpUserData)
-});
 formUserElement.addEventListener('submit', function (event) {
     saveEditProfile(event)
 });
 popUpAddPhotoButton.addEventListener('click', openCardModal);
-popUpCardDataCloseButton.addEventListener('click', function () {
-    closeModal(popUpCardData)
-});
+
 formCardElement.addEventListener('submit', function (event) {
     createCard(event)
 });
 
-photoPopUpCloseButton.addEventListener('click', function () {
-    closeModal(photoPopUp)
-});
+
 
 
 
