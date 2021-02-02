@@ -65,66 +65,6 @@ popUp.forEach((modal) => {
 })
 
 
-// Функция, которая добавляет класс с ошибкой
-const inputErrorClass = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__form_type_error');
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__error_visible');
-};
-
-// Функция, которая удаляет класс с ошибкой
-const hideErrorClass = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__form_type_error');
-  errorElement.classList.remove('popup__error_visible');
-  errorElement.textContent = '';
-};
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  })
-}
-const toggleButtonState = (inputList, buttonElement) => {
-        if (hasInvalidInput(inputList)) {
-            buttonElement.classList.add('popup__button_disabled')
-        } else {
-            buttonElement.classList.remove('popup__button_disabled')
-        }
-}
-
-const checkInputValidity = (formElement, inputElement) => {
-    if (!inputElement.validity.valid) {
-        inputErrorClass(formElement, inputElement, inputElement.validationMessage);
-    } else {
-        hideErrorClass(formElement, inputElement);
-    }
-};
-/* Вешаем обработчи событий на кадое поле формы */
-const inputSelector = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
-    const buttonElement = formElement.querySelector('.popup__button');
-    toggleButtonState(inputList, buttonElement);
-    inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', function () {
-            checkInputValidity(formElement, inputElement);
-            toggleButtonState(inputList, buttonElement);
-        });
-    });
-};
-
-/*Формируем лист форм и вешаем на каждую форму обработчик событий*/
-const formSelector = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
-    formList.forEach((formElement) => {
-        formElement.addEventListener('submit', function (evt) {
-            evt.preventDefault();
-        })
-        inputSelector(formElement)
-    })
-
-};
-formSelector()
 
 /* Функция для добавления карточки на страницу */
 function addPhotoToPage(card) {
@@ -156,14 +96,12 @@ function openProfileModal() {
     openModal(popUpUserData);
     popUpUserName.value = userName.textContent;
     popUpUserInfo.value = userInfo.textContent;
-    formSelector();
 }
 
 function openCardModal() {
     openModal(popUpCardData);
     popUpCardDescription.value = '';
     popUpCardImage.value = '';
-    formSelector();
 }
 
 function openPhotoModal(evt) {
