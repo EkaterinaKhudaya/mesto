@@ -42,12 +42,12 @@
             <form name="userData" class="popup__form popup__form_userData" novalidate>
                 <label class="popup__field">
                     <input class="popup__item popup__item_user_name" type="text" name="username"
-                           id="name-input" minlength="2" maxlength="40" required>
+                           id="name-input" minlength="2" maxlength="40" placeholder="Имя" required>
                     <span class="popup__error name-input-error"></span>
                 </label>
                 <label class="popup__field">
                     <input class="popup__item popup__item_user_info" type="text" name="userinfo"
-                           id="info-input" minlength="2" maxlength="200" required>
+                           id="info-input" minlength="2" maxlength="200" placeholder="О себе" required>
                     <span class="popup__error info-input-error"></span>
                 </label>
                 <input class="popup__button" type="submit" value="Сохранить">
@@ -93,7 +93,6 @@
         </li>
     </template>
 </div>
-
 <script src="./scripts/script.js"></script>
 <script src="./scripts/validate.js"></script>
 </body>
