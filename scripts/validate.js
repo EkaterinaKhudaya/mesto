@@ -1,4 +1,3 @@
-const button = document.querySelectorAll('.popup-open-button')
 const selectors = {
     formSelector: '.popup__form',
     inputSelector: '.popup__item',
@@ -7,11 +6,6 @@ const selectors = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 }
-button.forEach((modal) => {
-    modal.addEventListener('click', function () {
-        enableValidation(selectors);
-    })
-})
 
 // добавление класса с ошибкой
 const inputError = (formElement, inputElement, errorMessage, selectors) => {
@@ -24,6 +18,7 @@ const inputError = (formElement, inputElement, errorMessage, selectors) => {
 // удаляние класса с ошибкой
 const hideError = (formElement, inputElement, selectors) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    console.log(errorElement)
     inputElement.classList.remove(selectors.inputErrorClass);
     errorElement.classList.remove(selectors.errorClass);
     errorElement.textContent = '';
@@ -55,7 +50,6 @@ const setListenerToInput = (formElement, selectors) => {
     const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
     const buttonElement = formElement.querySelector(selectors.submitButtonSelector);
     toggleButtonState(inputList, buttonElement, selectors);
-    console.log(inputList)
     inputList.forEach((inputElement) => {
         hideError(formElement, inputElement, selectors);
         inputElement.addEventListener('input', function () {
@@ -78,3 +72,4 @@ const enableValidation = (selectors) => {
     setListenerToForm(selectors)
 };
 
+enableValidation(selectors);

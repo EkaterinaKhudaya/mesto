@@ -1,4 +1,4 @@
-const popUp = document.querySelectorAll('.popup')
+const popUps = document.querySelectorAll('.popup')
 const editDataButton = document.querySelector('.profile__edit-data-button');
 const userName = document.querySelector('.profile__username');
 const userInfo = document.querySelector('.profile__userinfo');
@@ -56,7 +56,7 @@ initialCards.reverse().forEach((card) => {
     addPhotoToPage(card);
 })
 /*Вешаем обработчик событий на popUp */
-popUp.forEach((modal) => {
+popUps.forEach((modal) => {
     modal.addEventListener('click', function (evt) {
         if (evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup')) {
             closeModal(modal)
@@ -64,14 +64,12 @@ popUp.forEach((modal) => {
     })
 })
 
-
-
-/* Функция для добавления карточки на страницу */
-function addPhotoToPage(card) {
+function createCard(card) {
     const photoElement = photoTemplate.cloneNode(true);
-    photoElement.querySelector('.photos__image').src = card.link;
-    photoElement.querySelector('.photos__caption').textContent = card.name;
-
+    const photoImage = photoElement.querySelector('.photos__image')
+    const photoDescription =  photoElement.querySelector('.photos__caption')
+    photoImage.src = card.link;
+    photoDescription.textContent = card.name;
     photoElement.querySelector('.photos__delete-button').addEventListener('click', function (event) {
         deletePhoto(event)
     });
@@ -79,36 +77,45 @@ function addPhotoToPage(card) {
         clickOnHeart(event)
     });
     photoElement.querySelector('.photos__image').addEventListener('click', function (event) {
-        openPhotoModal(event)
+        openPhotoModal(card)
     });
+    return photoElement
+}
+
+/* Функция для добавления карточки на страницу */
+function addPhotoToPage(card) {
+    const photoElement = createCard(card)
     photosList.prepend(photoElement);
 }
 
 function openModal(modal) {
     modal.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
 }
 
 function closeModal(modal) {
     modal.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape);
 }
 
 function openProfileModal() {
     openModal(popUpUserData);
     popUpUserName.value = userName.textContent;
     popUpUserInfo.value = userInfo.textContent;
+    setListenerToInput(popUpUserData,selectors);
 }
 
 function openCardModal() {
     openModal(popUpCardData);
     popUpCardDescription.value = '';
     popUpCardImage.value = '';
+    setListenerToInput(popUpCardData,selectors);
 }
 
-function openPhotoModal(evt) {
+function openPhotoModal(card) {
     openModal(photoPopUp);
-    const photoInfo = evt.target.closest('.photos__item');
-    image.src = evt.target.currentSrc;
-    caption.textContent = photoInfo.querySelector('.photos__caption').textContent;
+    image.src = card.link;
+    caption.textContent = card.name;
 }
 
 function saveEditProfile(evt) {
@@ -118,7 +125,7 @@ function saveEditProfile(evt) {
     closeModal(popUpUserData);
 }
 
-function createCard(evt) {
+function handleAddCard(evt) {
     evt.preventDefault();
     const card = {
         name: popUpCardDescription.value,
@@ -137,7 +144,12 @@ function deletePhoto(evt) {
     photoItem.remove();
 }
 
-
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closeModal(openedPopup);
+  }
+}
 editDataButton.addEventListener('click', openProfileModal);
 formUserElement.addEventListener('submit', function (event) {
     saveEditProfile(event)
@@ -145,7 +157,7 @@ formUserElement.addEventListener('submit', function (event) {
 popUpAddPhotoButton.addEventListener('click', openCardModal);
 
 formCardElement.addEventListener('submit', function (event) {
-    createCard(event)
+    handleAddCard(event)
 });
 
 
