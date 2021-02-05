@@ -102,14 +102,16 @@ function openProfileModal() {
     openModal(popUpUserData);
     popUpUserName.value = userName.textContent;
     popUpUserInfo.value = userInfo.textContent;
-    setListenerToInput(popUpUserData,selectors);
+    hideError(formUserElement, popUpUserName, selectors)
+    hideError(formUserElement, popUpUserInfo, selectors)
 }
 
 function openCardModal() {
     openModal(popUpCardData);
     popUpCardDescription.value = '';
     popUpCardImage.value = '';
-    setListenerToInput(popUpCardData,selectors);
+    hideError(formCardElement, popUpCardDescription, selectors)
+    hideError(formCardElement, popUpCardImage, selectors)
 }
 
 function openPhotoModal(card) {
