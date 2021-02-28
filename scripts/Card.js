@@ -1,5 +1,3 @@
-import {openModal} from './index.js'
-
 export class Card {
     constructor(name, link, cardSelector) {
         this._name = name;
@@ -14,14 +12,6 @@ export class Card {
         this._element.querySelector('.photos__like-button').classList.toggle('photos__like-button_active');
     }
 
-    _openPhotoModal() {
-        this._photoPopUp = document.querySelector('.popup_photo');
-        this._photoPopUp.querySelector('.popup__image-element').src = this._link;
-        this._photoPopUp.querySelector('.popup__heading-photo').textContent = this._name;
-        this._photoPopUp.classList.add('popup_opened');
-        openModal(this._photoPopUp);
-    }
-
     _setEventListeners() {
         this._element.querySelector('.photos__delete-button').addEventListener('click', () => {
             this._deletePhoto()
@@ -29,9 +19,7 @@ export class Card {
         this._element.querySelector('.photos__like-button').addEventListener('click',  () => {
             this._clickOnHeart()
         });
-        this._element.querySelector('.photos__image').addEventListener('click',  () => {
-            this._openPhotoModal()
-        });
+
     }
 
     _getTemplate() {

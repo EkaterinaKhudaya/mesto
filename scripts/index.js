@@ -15,6 +15,7 @@ const popUpCardDescription = document.querySelector('.popup__item_card_descripti
 const popUpCardImage = document.querySelector('.popup__item_card_image');
 const formCardElement = document.querySelector('.popup__form_cardInfo');
 const photosList = document.querySelector('.photos__list');
+const photoPopUp = document.querySelector('.popup_photo');
 
 
 const selectors = {
@@ -57,7 +58,8 @@ const initialCards = [
 initialCards.reverse().forEach((item) => {
     const card = new Card(item.name, item.link, '.card-template');
     const cardElement = card.generateCard();
-    addPhotoToPage(cardElement)
+    setEventListenerToPhotoModal(cardElement);
+    addPhotoToPage(cardElement);
 })
 /*Вешаем обработчик событий на popUp */
 popUps.forEach((modal) => {
@@ -87,16 +89,20 @@ function openProfileModal() {
     openModal(popUpUserData);
     popUpUserName.value = userName.textContent;
     popUpUserInfo.value = userInfo.textContent;
-    hideError(formUserElement, popUpUserName, selectors)
-    hideError(formUserElement, popUpUserInfo, selectors)
+    createFormValidator(popUpUserData)
 }
 
 function openCardModal() {
     openModal(popUpCardData);
     popUpCardDescription.value = '';
     popUpCardImage.value = '';
-    hideError(formCardElement, popUpCardDescription, selectors)
-    hideError(formCardElement, popUpCardImage, selectors)
+    createFormValidator(popUpCardData)
+}
+
+function openPhotoModal(cardElement) {
+    openModal(photoPopUp);
+    photoPopUp.querySelector('.popup__image-element').src = cardElement.querySelector('.photos__image').src;
+    photoPopUp.querySelector('.popup__heading-photo').textContent = cardElement.querySelector('.photos__caption').textContent;
 }
 
 function saveEditProfile(evt) {
@@ -110,8 +116,15 @@ function handleAddCard(evt) {
     evt.preventDefault();
     const card = new Card(popUpCardDescription.value, popUpCardImage.value, '.card-template');
     const cardElement = card.generateCard();
+    setEventListenerToPhotoModal(cardElement);
     addPhotoToPage(cardElement)
     closeModal(popUpCardData);
+}
+
+function setEventListenerToPhotoModal(cardElement) {
+    cardElement.querySelector('.photos__image').addEventListener('click', function () {
+        openPhotoModal(cardElement)
+    });
 }
 
 function closeByEscape(evt) {
@@ -121,23 +134,11 @@ function closeByEscape(evt) {
     }
 }
 
-export const hideError = (formElement, inputElement, selectors) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(selectors.inputErrorClass);
-    errorElement.classList.remove(selectors.errorClass);
-    errorElement.textContent = '';
-};
-
-function createFormValidator() {
-    const formList = document.querySelectorAll('.popup__form')
-    formList.forEach((formElement) => {
-        const form = new FormValidator(selectors, formElement)
-        form.enableValidation()
-    })
+function createFormValidator(formElement) {
+    const form = new FormValidator(selectors, formElement)
+    form.enableValidation()
 }
 
-
-createFormValidator()
 
 editDataButton.addEventListener('click', openProfileModal);
 

@@ -1,5 +1,3 @@
-import {hideError} from "./index.js";
-
 export class FormValidator {
     constructor(selectors, formElement) {
         this._selectors = selectors;
@@ -31,7 +29,7 @@ export class FormValidator {
 
     // активация/дезактивация кнопки submit
     _toggleButtonState() {
-        if (this._hasInvalidInput(this._inputList)) {
+        if (this._hasInvalidInput()) {
             this._buttonElement.classList.add(this._selectors.inactiveButtonClass)
         } else {
             this._buttonElement.classList.remove(this._selectors.inactiveButtonClass)
@@ -43,16 +41,17 @@ export class FormValidator {
         if (!inputElement.validity.valid) {
             this._inputError(inputElement);
         } else {
-            this._hideError();
+            this._hideError(inputElement);
         }
     };
 
     /* Вешаем обработчи событий на каждое поле формы */
     _setListenerToInput() {
         this._inputList.forEach((inputElement) => {
+            this._hideError(inputElement)
             inputElement.addEventListener('input', () => {
                 this._toggleInputError(inputElement);
-                this._toggleButtonState(inputElement);
+                this._toggleButtonState();
             });
         })
     };
@@ -61,6 +60,7 @@ export class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
         this._buttonElement = this._formElement.querySelector(this._selectors.submitButtonSelector);
         this._setListenerToInput()
+        this._toggleButtonState();
     };
 
 }
