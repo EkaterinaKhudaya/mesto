@@ -1,3 +1,6 @@
+import {Card} from './Card.js'
+import {FormValidator} from './FormValidator.js'
+
 const popUps = document.querySelectorAll('.popup')
 const editDataButton = document.querySelector('.profile__edit-data-button');
 const userName = document.querySelector('.profile__username');
@@ -11,49 +14,50 @@ const popUpCardData = document.querySelector('.popup_cardInfo');
 const popUpCardDescription = document.querySelector('.popup__item_card_description');
 const popUpCardImage = document.querySelector('.popup__item_card_image');
 const formCardElement = document.querySelector('.popup__form_cardInfo');
-const photoTemplate = document.querySelector('#photo').content;
 const photosList = document.querySelector('.photos__list');
-const photoPopUp = document.querySelector('.popup_photo');
-const image = photoPopUp.querySelector('.popup__image-element');
-const caption = photoPopUp.querySelector('.popup__heading-photo');
 
+
+const selectors = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__item',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+}
 
 const initialCards = [
     {
         name: 'Архыз',
-        description: 'гора Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
         name: 'Челябинская область',
-        description: 'река среди снегов',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
         name: 'Иваново',
-        description: 'многоэтажные здания',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
         name: 'Камчатка',
-        description: 'вид на гору',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
         name: 'Холмогорский район',
-        description: 'железная догора сквозь лес',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
         name: 'Байкал',
-        description: 'утёс на озере Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
 
 /*Автоматическое добавление карточкек при загрузки стараницы */
-initialCards.reverse().forEach((card) => {
-    addPhotoToPage(card);
+initialCards.reverse().forEach((item) => {
+    const card = new Card(item.name, item.link, '.card-template');
+    const cardElement = card.generateCard();
+    addPhotoToPage(cardElement)
 })
 /*Вешаем обработчик событий на popUp */
 popUps.forEach((modal) => {
@@ -64,31 +68,12 @@ popUps.forEach((modal) => {
     })
 })
 
-function createCard(card) {
-    const photoElement = photoTemplate.cloneNode(true);
-    const photoImage = photoElement.querySelector('.photos__image')
-    const photoDescription =  photoElement.querySelector('.photos__caption')
-    photoImage.src = card.link;
-    photoDescription.textContent = card.name;
-    photoElement.querySelector('.photos__delete-button').addEventListener('click', function (event) {
-        deletePhoto(event)
-    });
-    photoElement.querySelector('.photos__like-button').addEventListener('click', function (event) {
-        clickOnHeart(event)
-    });
-    photoElement.querySelector('.photos__image').addEventListener('click', function (event) {
-        openPhotoModal(card)
-    });
-    return photoElement
-}
-
 /* Функция для добавления карточки на страницу */
-function addPhotoToPage(card) {
-    const photoElement = createCard(card)
-    photosList.prepend(photoElement);
+function addPhotoToPage(cardElement) {
+    photosList.prepend(cardElement);
 }
 
-function openModal(modal) {
+export const openModal = (modal) => {
     modal.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 }
@@ -114,12 +99,6 @@ function openCardModal() {
     hideError(formCardElement, popUpCardImage, selectors)
 }
 
-function openPhotoModal(card) {
-    openModal(photoPopUp);
-    image.src = card.link;
-    caption.textContent = card.name;
-}
-
 function saveEditProfile(evt) {
     evt.preventDefault();
     userName.textContent = popUpUserName.value;
@@ -129,30 +108,39 @@ function saveEditProfile(evt) {
 
 function handleAddCard(evt) {
     evt.preventDefault();
-    const card = {
-        name: popUpCardDescription.value,
-        link: popUpCardImage.value
-    }
-    addPhotoToPage(card)
+    const card = new Card(popUpCardDescription.value, popUpCardImage.value, '.card-template');
+    const cardElement = card.generateCard();
+    addPhotoToPage(cardElement)
     closeModal(popUpCardData);
 }
 
-function clickOnHeart(evt) {
-    evt.target.classList.toggle('photos__like-button_active');
-}
-
-function deletePhoto(evt) {
-    const photoItem = evt.target.closest('.photos__item');
-    photoItem.remove();
-}
-
 function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    closeModal(openedPopup);
-  }
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened')
+        closeModal(openedPopup);
+    }
 }
+
+export const hideError = (formElement, inputElement, selectors) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove(selectors.inputErrorClass);
+    errorElement.classList.remove(selectors.errorClass);
+    errorElement.textContent = '';
+};
+
+function createFormValidator() {
+    const formList = document.querySelectorAll('.popup__form')
+    formList.forEach((formElement) => {
+        const form = new FormValidator(selectors, formElement)
+        form.enableValidation()
+    })
+}
+
+
+createFormValidator()
+
 editDataButton.addEventListener('click', openProfileModal);
+
 formUserElement.addEventListener('submit', function (event) {
     saveEditProfile(event)
 });
