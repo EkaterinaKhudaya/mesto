@@ -16,7 +16,8 @@ const popUpCardImage = document.querySelector('.popup__item_card_image');
 const formCardElement = document.querySelector('.popup__form_cardInfo');
 const photosList = document.querySelector('.photos__list');
 const photoPopUp = document.querySelector('.popup_photo');
-
+const imagePopupPicture = photoPopUp.querySelector('.popup__image-element');
+const imagePopupCaption = photoPopUp.querySelector('.popup__heading-photo');
 
 const selectors = {
     formSelector: '.popup__form',
@@ -26,41 +27,53 @@ const selectors = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 }
+const CardValidator = new FormValidator(selectors, formCardElement);
+const UserDataValidator = new FormValidator(selectors, formUserElement);
 
 const initialCards = [
     {
         name: 'Архыз',
+        description: 'Вид на гору Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
         name: 'Челябинская область',
+        description: 'Вид на реку в Челябинской области зимой',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
     },
     {
         name: 'Иваново',
+        description: 'Многоэтажные дома города Иваново',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
     },
     {
         name: 'Камчатка',
+        description: 'Вид на гору',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
         name: 'Холмогорский район',
+        description: 'Железная дорого, уходящая в даль',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
     },
     {
         name: 'Байкал',
+        description: 'Вид на утёс с озера Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
 
 /*Автоматическое добавление карточкек при загрузки стараницы */
 initialCards.reverse().forEach((item) => {
-    const card = new Card(item.name, item.link, '.card-template');
-    const cardElement = card.generateCard();
-    setEventListenerToPhotoModal(cardElement);
-    addPhotoToPage(cardElement);
+    addPhotoToPage(createCard(item));
 })
+
+function createCard(item) {
+    const card = new Card(item, '.card-template', handleCardClick);
+    const cardElement = card.generateCard();
+    return cardElement
+}
+
 /*Вешаем обработчик событий на popUp */
 popUps.forEach((modal) => {
     modal.addEventListener('click', function (evt) {
@@ -89,20 +102,14 @@ function openProfileModal() {
     openModal(popUpUserData);
     popUpUserName.value = userName.textContent;
     popUpUserInfo.value = userInfo.textContent;
-    createFormValidator(popUpUserData)
+    UserDataValidator.resetValidation();
 }
 
 function openCardModal() {
     openModal(popUpCardData);
     popUpCardDescription.value = '';
     popUpCardImage.value = '';
-    createFormValidator(popUpCardData)
-}
-
-function openPhotoModal(cardElement) {
-    openModal(photoPopUp);
-    photoPopUp.querySelector('.popup__image-element').src = cardElement.querySelector('.photos__image').src;
-    photoPopUp.querySelector('.popup__heading-photo').textContent = cardElement.querySelector('.photos__caption').textContent;
+    CardValidator.resetValidation();
 }
 
 function saveEditProfile(evt) {
@@ -114,17 +121,19 @@ function saveEditProfile(evt) {
 
 function handleAddCard(evt) {
     evt.preventDefault();
-    const card = new Card(popUpCardDescription.value, popUpCardImage.value, '.card-template');
-    const cardElement = card.generateCard();
-    setEventListenerToPhotoModal(cardElement);
-    addPhotoToPage(cardElement)
+    const card = {
+        name: popUpCardDescription.value,
+        link: popUpCardImage.value
+    }
+    addPhotoToPage(createCard(card));
     closeModal(popUpCardData);
 }
 
-function setEventListenerToPhotoModal(cardElement) {
-    cardElement.querySelector('.photos__image').addEventListener('click', function () {
-        openPhotoModal(cardElement)
-    });
+
+function handleCardClick(name, link) {
+    imagePopupPicture.src = link
+    imagePopupCaption.textContent = name
+    openModal(photoPopUp)
 }
 
 function closeByEscape(evt) {
@@ -134,11 +143,9 @@ function closeByEscape(evt) {
     }
 }
 
-function createFormValidator(formElement) {
-    const form = new FormValidator(selectors, formElement)
-    form.enableValidation()
-}
 
+CardValidator.enableValidation()
+UserDataValidator.enableValidation()
 
 editDataButton.addEventListener('click', openProfileModal);
 

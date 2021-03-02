@@ -1,3 +1,4 @@
+
 export class FormValidator {
     constructor(selectors, formElement) {
         this._selectors = selectors;
@@ -19,6 +20,13 @@ export class FormValidator {
         this._errorElement.classList.remove(this._selectors.errorClass);
         this._errorElement.textContent = '';
     };
+    resetValidation() {
+      this._inputList.forEach((inputElement) => {
+        this._hideError(inputElement)
+      });
+
+      this._toggleButtonState();
+    }
 
 // проверка формы на валидность
     _hasInvalidInput() {
