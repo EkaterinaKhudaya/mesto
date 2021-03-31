@@ -1,4 +1,3 @@
-
 export class FormValidator {
     constructor(selectors, formElement) {
         this._selectors = selectors;
@@ -20,12 +19,13 @@ export class FormValidator {
         this._errorElement.classList.remove(this._selectors.errorClass);
         this._errorElement.textContent = '';
     };
-    resetValidation() {
-      this._inputList.forEach((inputElement) => {
-        this._hideError(inputElement)
-      });
 
-      this._toggleButtonState();
+    resetValidation() {
+        this._inputList.forEach((inputElement) => {
+            this._hideError(inputElement)
+        });
+
+        this._toggleButtonState();
     }
 
 // проверка формы на валидность
@@ -38,9 +38,12 @@ export class FormValidator {
     // активация/дезактивация кнопки submit
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.add(this._selectors.inactiveButtonClass)
+            this._buttonElement.classList.add(this._selectors.inactiveButtonClass);
+            this._buttonElement.disabled = true;
+
         } else {
-            this._buttonElement.classList.remove(this._selectors.inactiveButtonClass)
+            this._buttonElement.classList.remove(this._selectors.inactiveButtonClass);
+            this._buttonElement.disabled = false;
         }
     };
 
