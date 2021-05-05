@@ -1,9 +1,23 @@
-.profile__avatar{
+.profile__avatar {
     border-radius: 50%;
-    align-self: center;
-    max-width: 120px;
-    max-height: 120px;
-    object-fit: cover;
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+
+.profile__avatar:hover::after {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: url("../../../images/avatarIcon.svg");
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 320px) {

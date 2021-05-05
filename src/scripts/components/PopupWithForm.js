@@ -6,6 +6,12 @@ export default class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit
     }
 
+    open(card, deleteFunction) {
+        super.open()
+        this._card = card
+        this._deleteCard = deleteFunction
+    }
+
     _getInputValues() {
         this._inputList = this._popup.querySelectorAll('.popup__item');
         this._formValues = {};
@@ -17,17 +23,27 @@ export default class PopupWithForm extends Popup {
     }
 
     setEventListeners() {
-        this._form =this._popup.querySelector('.popup__form')
-        this._form.addEventListener('submit', (evt) => {
-                evt.preventDefault();
-                this._handleFormSubmit(this._getInputValues())
-            }
-        );
         super.setEventListeners()
+        this._form = this._popup.querySelector('.popup__form')
+        if (!!this._form) {
+            this._form.addEventListener('submit', (evt) => {
+                    evt.preventDefault();
+                    this._handleFormSubmit(this._getInputValues())
+                }
+            );
+        } else {
+             this._deleteCard =  this._popup.querySelector('.popup__button')
+            this._deleteCard.addEventListener('click', evt => {
+                this._handleFormSubmit(this._card, this._deleteCard)
+            })
+        }
     }
 
     close() {
         super.close()
-        this._form.reset()
+        if (!!this._form) {
+            this._form.reset()
+        }
+
     }
 }
