@@ -6,6 +6,7 @@
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__data-container/profile__data-container.css);
+@import url(../blocks/profile/__avatar-photo/profile__avatar-photo.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__overlay/profile__overlay.css);
 @import url(../blocks/profile/__userdata/profile__userdata.css);
@@ -29,6 +30,7 @@
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
+@import url(../blocks/popup/__heading/_delete-card/popup__heading_delete-card.css);
 @import url(../blocks/popup/__heading-photo/popup__heading-photo.css);
 @import url(../blocks/popup/__photo-container/popup__photo-container.css);
 @import url(../blocks/popup/__image-element/popup__image-element.css);
@@ -36,10 +38,13 @@
 @import url(../blocks/photos/__list/photos__list.css);
 @import url(../blocks/photos/__item/photo__item.css);
 @import url(../blocks/photos/__delete-button/photos__delete-butoon.css);
+@import url(../blocks/photos/__delete-button/_active/photos__delete-button_active.css);
 @import url(../blocks/photos/__image/photos__image.css);
 @import url(../blocks/photos/__caption/photos__caption.css);
 @import url(../blocks/photos/__information/photos__information.css);
+@import url(../blocks/photos/__likes/photos__likes.css);
 @import url(../blocks/photos/__like-button/photos__like-button.css);
 @import url(../blocks/photos/__like-button/_active/photos__like-button_active.css);
+@import url(../blocks/photos/__like-number/photos__like-number.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

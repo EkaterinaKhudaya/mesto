@@ -1,5 +1,6 @@
 .photos__information {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 26px 15px 31px 21px;
 }
