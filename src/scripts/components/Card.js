@@ -18,7 +18,7 @@ export class Card {
         this._element.remove();
     }
 
-    _clickOnHeart(result) {
+    clickOnHeart(result) {
         this._element.querySelector('.photos__like-number').textContent = result.likes.length
         this._element.querySelector('.photos__like-button').classList.toggle('photos__like-button_active');
     }
@@ -28,7 +28,7 @@ export class Card {
             this._handleDeleteIconClick(this._data, this._deletePhoto.bind(this))
         });
         this._element.querySelector('.photos__like-button').addEventListener('click', () => {
-             this._handleLikeClick(this._data, this._element,  this._clickOnHeart.bind(this) )
+             this._handleLikeClick(this._data, this._element)
 
         });
         this._element.querySelector('.photos__image').addEventListener('click', () => {

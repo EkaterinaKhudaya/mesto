@@ -83,7 +83,7 @@ function createCard(item) {
         () => {
             popupWithImage.open(item.link, item.name)
         },
-        (data, element, clickFunction) => {
+        (data, element) => {
             const activeLike = element.querySelector('.photos__like-button_active')
             let method = ''
             if (!activeLike) {
@@ -95,7 +95,7 @@ function createCard(item) {
                 method = 'DELETE'
             }
             api.toggleLikeCard(method, {likes: data.likes.length, id: data._id})
-                .then((result) => clickFunction(result))
+                .then((result) => card.clickOnHeart(result))
                 .catch((error) => console.log(error))
         },
         (card, deleteFunction) => {
