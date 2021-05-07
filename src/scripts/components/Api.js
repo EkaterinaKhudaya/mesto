@@ -9,14 +9,7 @@ class Api {
             method: 'GET',
             headers: this._headers
         })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                } else {
-                    return Promise.reject(`Ошибка: ${res.status}`);
-                }
-            })
-
+            .then((res) => this._getResponseData(res))
     }
 
     getUserInfo() {
@@ -24,13 +17,7 @@ class Api {
             method: 'GET',
             headers: this._headers
         })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                } else {
-                    return Promise.reject(`Ошибка: ${res.status}`);
-                }
-            })
+            .then((res) => this._getResponseData(res))
     }
 
     editProfile(data) {
@@ -41,13 +28,7 @@ class Api {
                 name: data.username,
                 about: data.userinfo
             })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-        })
+        }).then((res) =>  this._getResponseData(res))
 
     }
 
@@ -59,26 +40,14 @@ class Api {
                 name: data.cardDescription,
                 link: data.cardImage
             })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-        })
+        }).then((res) =>  this._getResponseData(res))
     }
 
     deleteCard(data) {
         return fetch(this._baseUrl + `cards/${data._id}`, {
             method: 'DELETE',
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-        })
+        }).then((res) =>  this._getResponseData(res))
     }
 
     toggleLikeCard(method, data) {
@@ -88,13 +57,7 @@ class Api {
             body: JSON.stringify({
                 likes: data.likes
             })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-        })
+        }).then((res) => this._getResponseData(res))
     }
 
     changeAvatar(data) {
@@ -104,14 +67,14 @@ class Api {
             body: JSON.stringify({
                 avatar: data
             })
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-        })
+        }).then((res) => this._getResponseData(res))
+    }
 
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+        return res.json();
     }
 }
 

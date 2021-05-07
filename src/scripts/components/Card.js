@@ -18,7 +18,8 @@ export class Card {
         this._element.remove();
     }
 
-    _clickOnHeart() {
+    _clickOnHeart(result) {
+        this._element.querySelector('.photos__like-number').textContent = result.likes.length
         this._element.querySelector('.photos__like-button').classList.toggle('photos__like-button_active');
     }
 
