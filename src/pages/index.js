@@ -33,10 +33,10 @@ const avatarPopupForm = new PopupWithForm({
         startLoadData(constants.formAvatarElement)
         api.changeAvatar(data.avatarChange)
             .then(() => getUserInfo())
+            .then(() => avatarPopupForm.close())
             .catch((error) => console.log(error))
             .finally(() => {
                 stopLoadData(constants.formAvatarElement)
-                avatarPopupForm.close()
             })
 
     }
@@ -46,10 +46,10 @@ const cardPopupForm = new PopupWithForm({
         startLoadData(constants.formCardElement)
         api.addNewCard(data)
             .then((result) => cardsList.addItem(createCard(result)))
+            .then(() =>  cardPopupForm.close())
             .catch((error) => console.log(error))
             .finally(() => {
                 stopLoadData(constants.formCardElement)
-                cardPopupForm.close()
             })
     }
 })
@@ -58,10 +58,10 @@ const userDataPopupForm = new PopupWithForm({
             startLoadData(constants.popUpUserData)
             api.editProfile(data)
                 .then((result) => profile.setUserInfo(result))
+                .then(() => userDataPopupForm.close())
                 .catch((error) => console.log(error))
                 .finally(() => {
                     stopLoadData(constants.popUpUserData)
-                    userDataPopupForm.close()
                 })
         }
     }
